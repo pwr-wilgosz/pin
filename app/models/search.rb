@@ -67,7 +67,7 @@ class Search
 
   def product_price(page, selector)
     return if (p = page.css(selector).first&.text).blank?
-    p.gsub(/\s/, '')
+    p.gsub(/[\s\.]/, '').gsub(',', '.').to_f
   end
 
   def product_url(host, page, selector)
