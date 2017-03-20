@@ -11,8 +11,8 @@ class Search
     a << get_media_markt
     a << get_neo24
     get_cheapest = a.sort_by { |i| i[:price] }.first
-    @price = get_cheapest[:price]
-    @url = get_cheapest[:url]
+    @price = get_cheapest[:price].presence
+    @url = price.present? ? get_cheapest[:url] : nil
 
     { url: url, price: price }
   end
