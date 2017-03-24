@@ -10,7 +10,7 @@ class Search
     a << get_saturn
     a << get_media_markt
     a << get_neo24
-    get_cheapest = a.sort_by { |i| i[:price] }.first
+    get_cheapest = a.delete_if{ |i| i[:price].nil? }.sort_by { |i| i[:price] }.first || {}
     @price = get_cheapest[:price].presence
     @url = price.present? ? get_cheapest[:url] : nil
 
